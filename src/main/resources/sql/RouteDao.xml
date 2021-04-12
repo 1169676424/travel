@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itcast.travel.dao.RouteDao">
+
+    <select id="totalCount" parameterType="String" resultType="int">
+        select count(*) from tab_route
+        <where>
+            <if test="cid != null">
+                cid = #{cid}
+            </if>
+        </where>
+    </select>
+
+    <select id="findByPage" parameterType="Map" resultType="Route">
+        select * from tab_route
+        <where>
+            <if test="cid != null">
+                cid = #{cid}
+            </if>
+        </where>
+        limit #{start},#{pageSize}
+    </select>
+
+    <select id="findOne" parameterType="String" resultType="Route">
+        select * from tab_route where rid = #{rid}
+    </select>
+
+    <update id="updateCount" parameterType="String">
+        update tab_route set count = count + 1 where rid =#{rid}
+    </update>
+
+    <select id="findList" resultType="Route">
+        select * from tab_route order by count desc limit 5;
+    </select>
+</mapper>

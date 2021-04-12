@@ -1,0 +1,81 @@
+<!-- 头部 start -->
+
+<script src="js/getParameter.js"></script>
+<script>
+    $(function () {
+        //查询当前登录用户信息
+        $.get("user/findOne", {}, function (data) {
+            //{uid:1,name:'李四'}
+            if (data != null && data != "") {
+                var msg = "欢迎回来，" + data.name;
+                $("#span_username").html(msg);
+                $("#login").css("display", "block");
+                $("#login_out").css("display", "none");
+            } else {
+                $("#login").css("display", "none");
+                $("#login_out").css("display", "block");
+            }
+        });
+
+        //查询分类数据
+        $.get("category/findAll", {}, function (data) {
+            var lis = '<li class="nav-active"><a href="index.html">首页</a></li>';
+            //遍历数组,拼接字符串(<li>)
+            for (var i = 0; i < data.length; i++) {
+                var li = '<li><a href="route_list.html?cid=' + data[i].cid + '">' + data[i].cname + '</a></li>';
+                lis += li;
+            }
+            //将lis字符串，设置到ul的html内容中
+            $("#category").html(lis);
+        });
+        
+    });
+
+</script>
+
+<header id="header">
+    <div class="top_banner">
+        <img src="images/top_banner.jpg" alt="">
+    </div>
+    <div class="header_wrap">
+        <div class="topbar">
+            <div class="logo">
+                <a href="/"><img src="images/logo.jpg" alt=""></a>
+            </div>
+            <div class="search">
+                <input name="" id="search_input" type="text" placeholder="请输入路线名称" class="search_input"
+                       autocomplete="off">
+                <a href="javascript:;" id="search-button" class="search-button">搜索</a>
+            </div>
+            <div class="shortcut">
+                <!-- 未登录状态  -->
+                <div class="login_out" id="login_out">
+                    <a href="login.html">登录</a>
+                    <a href="register.html">注册</a>
+                </div>
+                <!-- 登录状态  -->
+                <div class="login" id="login">
+                    <span id="span_username"></span>
+                    <a href="javascript:;" class="collection"></a>
+                    <a href="user/exit">退出</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- 头部 end -->
+<!-- 首页导航 -->
+<div class="navitem">
+    <ul id="category" class="nav">
+        <li class="nav-active"><a href="index.html">首页</a></li>
+        <li><a href="route_list.html?cid=1">门票</a></li>
+        <li><a href="route_list.html?cid=2">酒店</a></li>
+        <li><a href="route_list.html?cid=3">香港车票</a></li>
+        <li><a href="route_list.html?cid=4">出境游</a></li>
+        <li><a href="route_list.html?cid=5">国内游</a></li>
+        <li><a href="route_list.html?cid=6">港澳游</a></li>
+        <li><a href="route_list.html?cid=7">抱团定制</a></li>
+        <li><a href="route_list.html?cid=8">全球自由行</a></li>
+    </ul>
+</div>
+    

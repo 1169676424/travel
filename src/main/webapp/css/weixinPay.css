@@ -1,0 +1,25 @@
+.rg_form_center .phone {
+    background: url(../images/phone-bg.jpg) no-repeat;
+    width: 350px;
+    height: 400px;
+    display: inline-block;
+    float: right;
+}
+
+.rg_form_center .qrcode {
+    display: inline-block;
+    float: left;
+    margin-top: 50px;
+    margin-left: 80px;
+}
+
+.rg_form_center .qrcodeSuc {
+    display: inline-block;
+    float: left;
+    text-align: center;
+    font-size: 50px;
+    margin-top: 160px;
+    margin-left: 120px;
+    display: none;
+}
+
